@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Python-Maze_Game", "Python-Maze_Game.pyproj", "{C1DB739E-B674-4DF2-89C2-63148E5B8489}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C1DB739E-B674-4DF2-89C2-63148E5B8489}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1DB739E-B674-4DF2-89C2-63148E5B8489}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {28E62783-DBF1-4833-9346-179E3D5294F3}
+	EndGlobalSection
+EndGlobal
