@@ -1,7 +1,6 @@
 import pygame as pg
 from mazeMap import maze as normMaze
-import traceback
-import random
+import tilt
 
 pg.init()
 screenSize = (800,800)
@@ -76,6 +75,31 @@ while running:
 		
 	inputBuffer = 0
 	keys = pg.key.get_pressed()
+
+	x, y, z = tilt.MBInput.get_gyro_data() # No use for z
+
+	if x < 0:
+		if not mlCollide():
+			if inputBuffer == 0:
+				inputBuffer = 10
+				playerCoord[0] -= x/100
+	elif x > 0:
+		if not mrCollide():
+			if inputBuffer == 0:
+				inputBuffer = 10
+				playerCoord[0] += x/100
+
+	if y < 0:
+		if not mtCollide():
+			if inputBuffer == 0:
+				inputBuffer = 10
+				playerCoord[1] -= y/100
+	elif y > 0:
+		if not mbCollide():
+			if inputBuffer == 0:
+				inputBuffer = 10
+				playerCoord[1] += y/100
+
 	if keys[pg.K_w]:
 		if not mtCollide():
 			if inputBuffer == 0:
