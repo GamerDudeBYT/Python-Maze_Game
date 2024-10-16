@@ -76,7 +76,7 @@ while running:
 	inputBuffer = 0
 	keys = pg.key.get_pressed()
 
-	x, y, z = tilt.MBInput.get_gyro_data() # No use for z
+	x, y, z = tilt.get_gyro_data() # No use for z
 
 	if x < 0:
 		if not mlCollide():
