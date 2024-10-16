@@ -1,6 +1,10 @@
 import pygame as pg
-from mazeMap import maze as normMaze
-import tilt
+from mazeMap import maze
+import createMaze
+#import tilt
+
+#maze = createMaze.load_maze(50, 50)
+print(maze)
 
 pg.init()
 screenSize = (800,800)
@@ -12,7 +16,7 @@ screen = pg.display.set_mode(screenSize)
 clock = pg.time.Clock()
 playerCoord = [10, 14]
 lines = []
-cell_size = 20
+cell_size = 24
 
 def draw_lines(maze):
 	for (x, y), neighbours in maze.items():
@@ -71,25 +75,25 @@ while running:
 	playerRect = pg.Rect(playerCoord[0], playerCoord[1], 10, 10)
 	player = pg.draw.rect(screen, playerColour, playerRect)
 	lines = []
-	draw_lines(normMaze)
+	draw_lines(maze)
 		
 	inputBuffer = 0
 	keys = pg.key.get_pressed()
-
+	"""
 	x, y, z = tilt.get_tilt_data() # No use for z
 
 	if not mlCollide():
-		playerCoord[0] -= x/100
+		playerCoord[0] += x/100
 
 	if not mrCollide():
 		playerCoord[0] += x/100
 
 	if not mtCollide():
-		playerCoord[1] -= y/100
+		playerCoord[1] += y/100
 
 	if not mbCollide():
 		playerCoord[1] += y/100
-
+	"""
 	if keys[pg.K_w]:
 		if not mtCollide():
 			if inputBuffer == 0:
