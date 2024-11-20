@@ -1,5 +1,4 @@
 import pygame as pg
-#from mazeMap import maze
 import createMaze
 import tilt
 maze_size = 30
