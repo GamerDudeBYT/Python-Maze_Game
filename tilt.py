@@ -1,6 +1,6 @@
 import serial
 
-ser = serial.Serial('COM3', 115200)
+ser = serial.Serial('COM5', 115200)
 
 def get_tilt_data():
     """
@@ -11,6 +11,8 @@ def get_tilt_data():
     # have to read 2 lines to reduce delay... for some reason.
     _    = ser.readline().decode('utf-8').strip() 
     line = ser.readline().decode('utf-8').strip()
+
+    print(line)
 
     try:
         mgx, mgy, mgz = line.split()

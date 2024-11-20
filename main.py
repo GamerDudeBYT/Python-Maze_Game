@@ -1,10 +1,9 @@
 import pygame as pg
-from mazeMap import maze
+#from mazeMap import maze
 import createMaze
-#import tilt
-
-#maze = createMaze.load_maze(50, 50)
-print(maze)
+import tilt
+maze_size = 30
+maze = createMaze.load_maze(maze_size, maze_size)
 
 pg.init()
 screenSize = (800,800)
@@ -42,25 +41,25 @@ def draw_lines(maze):
 
 def mtCollide():
 	for line in lines:
-		if line.collidepoint(playerRect.midtop):
+		if line.collidepoint(future_rect.midtop):
 			return True
 	return False
 
 def mlCollide():
 	for line in lines:
-		if line.collidepoint(playerRect.midleft):
+		if line.collidepoint(future_rect.midleft):
 			return True
 	return False
 
 def mbCollide():
 	for line in lines:
-		if line.collidepoint(playerRect.midbottom):
+		if line.collidepoint(future_rect.midbottom):
 			return True
 	return False
 
 def mrCollide():
 	for line in lines:
-		if line.collidepoint(playerRect.midright):
+		if line.collidepoint(future_rect.midright):
 			return True
 	return False
 
@@ -79,21 +78,40 @@ while running:
 		
 	inputBuffer = 0
 	keys = pg.key.get_pressed()
-	"""
+
 	x, y, z = tilt.get_tilt_data() # No use for z
+	y = y*-1 # flip the y axis (maybe)
+	print(f" {x}\t {y}")
+	future_pos = [playerCoord[0] + x/maze_size, playerCoord + y/maze_size]
+	future_rect = pg.Rect(future_pos[0], future_pos[1])
 
-	if not mlCollide():
-		playerCoord[0] += x/100
+	if mlCollide() or mrCollide() or mtCollide() or mbCollide():
+		while mlCollide():
+			future_pos[0] += 1
 
-	if not mrCollide():
-		playerCoord[0] += x/100
+		while mrCollide():
+			future_pos[0] -= 1
 
-	if not mtCollide():
-		playerCoord[1] += y/100
+		while mtCollide():
+			future_pos[1] += 1
 
-	if not mbCollide():
-		playerCoord[1] += y/100
-	"""
+		while mbCollide():
+			future_pos[1] -= 1
+	playerCoord = future_pos
+
+
+#if not mlCollide():
+	playerCoord[0] += x/maze_size
+
+#if not mrCollide():
+	#playerCoord[0] += x/maze_size
+
+#if not mtCollide():
+	playerCoord[1] += y/maze_size
+
+#if not mbCollide():
+	#playerCoord[1] += y/maze_size
+
 	if keys[pg.K_w]:
 		if not mtCollide():
 			if inputBuffer == 0:
@@ -121,6 +139,6 @@ while running:
 	if inputBuffer > 0:
 		inputBuffer -= 1
 
-	clock.tick(120)
+	clock.tick(10)
 	pg.display.flip()
 pg.quit()
