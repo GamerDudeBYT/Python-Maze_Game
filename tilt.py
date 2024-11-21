@@ -1,6 +1,6 @@
 import serial
 
-ser = serial.Serial('COM5', 115200)
+ser = serial.Serial('COM2', 115200)
 
 def get_tilt_data():
     """
